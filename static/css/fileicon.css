@@ -123,8 +123,12 @@
 }
 /* fileicon.types */
 .file-icon[data-type=zip],
-.file-icon[data-type=rar] {
-  background: #acacac;
+.file-icon[data-type=rar],
+.file-icon[data-type=tar],
+.file-icon[data-type=xz],
+.file-icon[data-type=gz],
+.file-icon[data-type=7z]{
+  background: #4757ff;
 }
 .file-icon[data-type^=doc] {
   background: #307cf1;
@@ -160,4 +164,11 @@
 .file-icon[data-type=gif],
 .file-icon[data-type=png] {
   background: #f4b400;
+}
+.file-icon[data-type=img],
+.file-icon[data-type=iso],
+.file-icon[data-type=dmg],
+.file-icon[data-type=bin],
+.file-icon[data-type=vdi] {
+  background: #8587f2;
 }
