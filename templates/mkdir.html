@@ -1,0 +1,20 @@
+<div class="modal fade" id="modal_mkdir" role="dialog">
+	<div class="modal-dialog">
+	
+	  <!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+					<form action="/mkdir{{config['CURRENT_ROUTE']}}" method="POST">
+						<center><input type="text" class="form-control" value="New Folder" id="dirname" name="dirname">
+						<span style="display:block; height: 8px;"></span>
+						<input type="submit" class="btn btn-primary" value="Create"></center>
+					</form>
+				
+			</div>
+		</div>
+	</div>
+</div>
+

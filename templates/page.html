@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{disp_path[-1]}}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+		
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fileicon.css') }}">
+		<link rel="stylesheet" type="text/css" href="/templates/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/templates/typography.css">
+		<link rel="stylesheet" type="text/css" href="/templates/fab_style.css">
+		<link rel="stylesheet" type="text/css" href="/templates/propeller_button.css">
+		
+		<script src="/templates/jquery/jquery-3.4.1.js"></script>
+		<script src="/templates/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+<!--
+		<div class="progress-rounded progress">
+			<div class="progress-bar progress-bar-info" style="width: 68%;"></div>
+		</div>
+-->
+		<center>
+				<b><h1>WebSgarePy</h1></b>
+				<p>Webserver using python flask framework for managing storage on the server.</p>
+		</center>
+		<b><i><h1>
+			&nbsp;{% for each in disp_path: %}
+				<a href='/explore{{disp_dict[each]}}'>{{each}}</a>&nbsp;/
+			{% endfor %}
+		</h1></i></b>
+		<table class="table" style="width:100%">
+			<tr>
+				<th></th>
+				<th>File/Directory</th>
+				<th>File size</th>
+			</tr>
+			{% for dir in dirs: %}
+				<tr onclick="window.location.href='/explore/{{path}}/{{dir.name}}'">
+					<td>&nbsp;&nbsp;&nbsp;<div class="folder-icon"></div></td>
+					<td>{{dir}}<br>
+						<p style="font-size:12px">{{dir.modified}}</p>
+					</td>
+					<td>{{dir.get_size()}}</td>
+				</tr>
+			{% endfor %}
+			{% for file in files: %}
+			<tr onclick="window.location.href='/explore/{{path}}/{{file.name}}'">
+				<td>&nbsp;&nbsp;&nbsp;<div class="file-icon file-icon-default" data-type="{{file.type}}"></div></td>
+				<td>{{file}}<br>
+					<p style="font-size:12px">{{file.modified}}</p>
+				</td>
+				<td>{{file.get_size_string()}}</td>
+			</tr> 
+			{% endfor %}
+		</table>
+		
+		{% include 'mkdir.html' %}
+		{% include 'fab.html' %}
+		{% include 'uploader.html' %}
+		
+	</body>
+</html>
