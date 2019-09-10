@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="/templates/typography.css">
 		<link rel="stylesheet" type="text/css" href="/templates/fab_style.css">
 		<link rel="stylesheet" type="text/css" href="/templates/propeller_button.css">
+    <link rel="stylesheet" type="text/css" href="/templates/material-icons.css">
 		
 		<script src="/templates/jquery/jquery-3.4.1.js"></script>
 		<script src="/templates/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -38,7 +39,7 @@
 			</tr>
 			{% for dir in dirs: %}
 				<tr onclick="window.location.href='/explore/{{path}}/{{dir.name}}'">
-					<td>&nbsp;&nbsp;&nbsp;<div class="folder-icon"></div></td>
+					<td>&nbsp;&nbsp;&nbsp;<i class="material-icons" style="font-size:36px;color:#018fef">folder</i>
 					<td>{{dir}}<br>
 						<p style="font-size:12px">{{dir.modified}}</p>
 					</td>

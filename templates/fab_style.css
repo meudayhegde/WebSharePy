@@ -1,9 +1,4 @@
 
-/* Propeller icons */
-
-@import "http://fonts.googleapis.com/icon?family=Material+Icons";
-@import "http://propeller.in/components/icons/css/google-icons.css";
-
 /* Propeller css for Floating Action Button*/
 .pmd-floating-action { bottom: 0; position: fixed;  margin:3em;  right: 0; }
 .pmd-floating-action-btn { display:block; position: relative; transition: all .2s ease-out;}
