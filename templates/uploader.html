@@ -7,27 +7,29 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div class="modal-body">
-				
-				<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-					<center>
-						<strong>Files:</strong><br>
-						Select files OR drag them into the box below.
-						<input id="file-picker" class="btn btn-default" type="file" name="file" accept="*/*" multiple><p>
-						
-						<div id="dropbox">
-							Drag and Drop Files Here
-						</div>
-					</center>
-					<fieldset id="progress" style="display: none">
-						<legend>Files Progress</legend>
-
-						<div class="progress-trough"><div id="progress-bar" class="progress-bar">0%</div></div>
-					</fieldset><br>
-					<input type="submit" class="btn btn-primary" value="Upload!" id="upload-button">
+				<center><p style="font-size:12px">Do not refresh or visit another page while uploading.<br>Uploading will be <strong>interrupted</strong> by doing so.</p></center>
+				<form method="POST" action="/upload/{{path}}" class="dropzone needsclick dz-clickable" 
+					id="dropper" enctype="multipart/form-data" style="border-style:dashed;border-color:#00c2ff">
+					<div class="dz-message needsclick">
+						Drop files here or <strong>click</strong> to upload.<br>
+					</div>
+					<div class="fallback">
+						<input name="file" type="file" multiple />
+					</div>
 				</form>
-				
-				<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
-				<script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
+				<script type="application/javascript">
+					
+					Dropzone.options.dropper = {
+						paramName: 'file',
+						chunking: true,
+						forceChunking: true,
+						retryChunks: true,
+						retryChunksLimit: 4,
+						url: '/upload/{{path}}',
+						maxFilesize: 10240, // megabytes
+						chunkSize: 1048576 // bytes
+					};
+				</script>
 			</div>
 		</div>
 	</div>
