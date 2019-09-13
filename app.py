@@ -13,8 +13,8 @@ import json
 class FileUtils():
 	def __init__(self,path):
 		self.path=path
-		self.name = path.split('/')[-1]
-		if self.name=='': self.name=path.split('/')[-2]
+		self.name = path.split(sep)[-1]
+		if self.name=='': self.name=path.split(sep)[-2]
 		self.modified=ctime(getmtime(path))
 		if isdir(self.path):self.type = 'dir'
 		else:
@@ -30,15 +30,19 @@ class FileUtils():
 		
 	def get_size_string(self):
 		bt_size=self.get_size()
+		if bt_size<0 : return ''
 		if(bt_size<=1024): return str(bt_size)+' Bytes'
 		elif(bt_size<=1024*1024): return str(round(bt_size/1024,2))+' KB'
 		elif(bt_size<=1024*1024*1024): return str(round(bt_size/(1024**2),2))+' MB'
 		else: return str(round(bt_size/(1024**3),2))+' GB'
 	
 	def get_size(self):
-		if exists(self.path) and not isdir(self.path):
-			return getsize(self.path)
-		return len(listdir(self.path))
+		try:
+			if exists(self.path) and not isdir(self.path):
+				return getsize(self.path)
+			return len(listdir(self.path))
+		except:
+			return -1
 
 class PyExplorer():
 	def __init__(self,port,path,host,debug=True):
@@ -49,20 +53,16 @@ class PyExplorer():
 		self.app.config['CURRENT_PATH']=path
 		self.app.config["CURRENT_ROUTE"]='/'
 		self.debug=debug
-		self.log = logging.getLogger('pydrop')
+		self.log = logging.getLogger('websharepy')
 		self.create_routes()
 		
 	
-	def add_config(self,args):
+	def set_config(self,*args):
 		for arg in args:
 			try:
-				self.app.config[arg.split('=')[0]]=eval(arg.split('=')[1])
+				self.app.config[arg.split('=')[0].upper()]=eval(arg.split('=')[1])
 			except:
 				print('Invalid argument format')
-	
-	def ajax_response(self,status, msg):
-		status_code = "ok" if status else "error"
-		return json.dumps(dict(status=status_code,msg=msg,))
 	
 	def create_routes(self):
 		@self.app.route('/')
