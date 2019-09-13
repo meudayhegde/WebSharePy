@@ -9,9 +9,9 @@ def safe_import(name):
 		module=__import__(name)
 		return module
 	except ModuleNotFoundError as ex:
-		if input('module',name,'not installed, do you want to install?(y/n): ').toupper()=='Y':
+		if input('module '+name+' not installed, do you want to install?(y/n): ').upper()=='Y':
 			__install__(name)
-			return safe_import(name)
+		return safe_import(name)
 
 def safe_import_attr(module,*attrs):
 	ret_attrs=[]
