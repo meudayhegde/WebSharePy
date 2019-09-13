@@ -1,6 +1,11 @@
 # WebSharePy
 <b>Flask</b> based web-server  for managing storage over a web-browser through network.
 
+#### Requirements
+- Python3 <a href='https://www.python.org/downloads/'>Download latest</a>
+- pip3
+
+
 #### Basic Usage
 ```
 python3 websharepy.py

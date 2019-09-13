@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
 import logging
-from flask import Flask,render_template, send_file, send_from_directory, redirect, url_for, request, make_response
+from myutils import safe_import_attr
 from sys import argv
 from os import environ,walk,listdir, mkdir
 from os.path import relpath,isdir,join, exists, getsize, getmtime, sep
 from sys import argv
 from time import ctime
+Flask,render_template, send_file, send_from_directory, redirect, url_for, request, make_response = safe_import_attr('flask','Flask','render_template', 'send_file', 'send_from_directory', 'redirect', 'url_for', 'request', 'make_response')
 from werkzeug.utils import secure_filename
 import json
 
