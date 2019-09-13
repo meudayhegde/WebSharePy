@@ -31,7 +31,9 @@
 				<p>Webserver using python flask framework for managing storage on the server.</p>
 		</center>
 		<b><i><h1>
-			&nbsp;{% for each in disp_path: %}
+			&nbsp;
+			<a href='/explore'><i class="material-icons" style="font-size:32px;position:relative;top:8px">home</i> {{disp_path.pop(0)}}</a>&nbsp;/
+			{% for each in disp_path: %}
 				<a href='/explore{{disp_dict[each]}}'>{{each}}</a>&nbsp;/
 			{% endfor %}
 		</h1></i></b>
